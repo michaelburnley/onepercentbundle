@@ -1,0 +1,151 @@
+<style>
+    .bundle {
+        padding: 5%;
+        text-align: center;
+    }
+
+    .image-wrapper {
+        width: 90%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .larger {
+        font-size: 25px;
+    }
+
+    button {
+        background-color: rgb(234, 11, 40);
+        border-radius: 0;
+        font-family: 'Lato';
+        color: #FFF;
+        font-style: normal;
+        font-size: 18px;
+        font-weight: 400;
+        text-decoration: none;
+        padding: 16px 48px;
+    }
+
+    .image-wrapper img {
+        width: 100%;
+    }
+
+    .price-block {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        vertical-align: top;
+    }
+
+    .price-block .sale {
+        color: green;
+    }
+
+    .price-block .original {
+        color: black;
+    }
+
+    .strike {
+        text-decoration: strikethrough;
+    }
+
+    .grey {
+        border: 2px solid grey;
+    }
+
+    .green {
+        border: 5px solid green;
+    }
+
+    .red {
+        border: 5px solid red;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .trust {
+
+    }
+
+    .bundles {
+        width: 100%;
+    }
+
+    .bundle-container {
+        padding: 1%;
+        width: 30%;
+        display: inline-block;
+    }
+    
+</style>
+
+<script>
+    const htmlcoll = document.getElementsByClassName("purchase-button");
+    let button_arr = Array.from(htmlcoll);
+    const addToCart = (e) => {
+        e.preventDefault();
+        console.log()
+        CartJS.addItem(e.target.dataset.variantId, 1, {
+            "added_by": "Cart.js"
+        });
+        window.location.href='/cart';
+    }
+    button_arr.forEach((button) => {
+        button.addEventListener("click", addToCart);
+    });
+</script>
+
+<div class="bundles">
+    <div class="bundle-container grey">
+        <div class="bundle">
+            <h2>1 Bottle</h2>
+            <div class="bold bigger">Phytocannabinoid-Rich Hemp Oil</div>
+            <div class="image-wrapper">
+                <img src="images/pcr1.png" alt="PCR Bundle 1" />
+            </div>
+            <div class="price-block bold larger">
+                <div class="original price">Regular Price</div>
+                <div class="sale price">$108.00</div>
+            </div>
+            <div>
+                <button data-variant-id="8496149757994" class="purchase-button">Buy Now</button>
+            </div>
+            <div class="trust"></div>
+        </div>
+    </div>
+    <div class="bundle-container green">
+        <div class="bundle">
+            <h2>3 Bottle</h2>
+            <div class="bold bigger">Phytocannabinoid-Rich Hemp Oil</div>
+            <div class="image-wrapper">
+                <img src="images/pcr3.png" alt="PCR Bundle 3" />
+            </div>
+            <div class="price-block bold larger">
+                <div class="original price">$108.00</div>
+                <div class="sale price">$108.00</div>
+            </div>
+            <div>
+                <button data-variant-id="14539511791658" class="purchase-button">Buy Now</button>
+            </div>
+            <div class="trust"></div>
+        </div>
+    </div>
+    <div class="bundle-container red">
+        <div class="bundle">
+            <h2>6 Bottle</h2>
+            <div class="bold bigger">Phytocannabinoid-Rich Hemp Oil</div>
+            <div class="image-wrapper">
+                <img src="images/pcr6.png" alt="PCR Bundle 6" />
+            </div>
+            <div class="price-block bold larger">
+                <div class="original price">$108.00</div>
+                <div class="sale price">$108.00</div>
+            </div>
+            <div>
+                <button data-variant-id="14539513167914" class="purchase-button">Buy Now</button>
+            </div>
+            <div class="trust"></div>
+        </div>
+    </div>
+</div>

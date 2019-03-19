@@ -4,36 +4,36 @@ const headers = {
     'X-Shopify-Storefront-Access-Token': ''
 };
 
-const bookContainer = document.querySelector("#book-container");
-const form = document.querySelector("#book-search");
+const bundleContainer = document.querySelector("#bundle-container");
+const form = document.querySelector("#bundle-search");
 
-const getBooksQuery = (keyword) => `{ allBooks(filter: { q:"${keyword}"}) { author title url } }`;
+const getbundlesQuery = (keyword) => `{ allbundles(filter: { q:"${keyword}"}) { price id title} }`;
 
-const renderBooks = ({ data }) => {
-  const { allBooks = [] } = data;
+const renderbundles = ({ data }) => {
+  const { allbundles = [] } = data;
 
-  while (bookContainer.firstChild) {
-    bookContainer.removeChild(bookContainer.firstChild);
+  while (bundleContainer.firstChild) {
+    bundleContainer.removeChild(bundleContainer.firstChild);
   }
 
-  const bookFragment = document.createDocumentFragment();
-  const booksList = document.createElement('ul');
+  const bundleFragment = document.createDocumentFragment();
+  const bundlesList = document.createElement('ul');
 
-  allBooks.forEach((book) => {
-    const booksListItem = document.createElement('li');
-    const booksListLink = document.createElement('a');
-    booksListLink.href = book.url;
-    booksListLink.textContent = "Click To View";
-    booksListItem.textContent = `${book.title} - ${book.author}`;
-    booksListItem.appendChild(booksListLink);
-    booksList.appendChild(booksListItem);
+  allbundles.forEach((bundle) => {
+    const bundlesListItem = document.createElement('li');
+    const bundlesListLink = document.createElement('a');
+    bundlesListLink.href = bundle.url;
+    bundlesListLink.textContent = "Click To View";
+    bundlesListItem.textContent = `${bundle.title} - ${bundle.author}`;
+    bundlesListItem.appendChild(bundlesListLink);
+    bundlesList.appendChild(bundlesListItem);
   });
 
-  bookFragment.appendChild(booksList);
-  bookContainer.appendChild(bookFragment);
+  bundleFragment.appendChild(bundlesList);
+  bundleContainer.appendChild(bundleFragment);
 }
 
-const loadBooks = (ev) => {
+const loadbundles = (ev) => {
   ev.preventDefault();
   const keyword = form.elements["search"].value;
 
@@ -43,15 +43,15 @@ const loadBooks = (ev) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      query: getBooksQuery(keyword)
+      query: getbundlesQuery(keyword)
     })
   };
 
   fetch(`http://localhost:3000`, options)
     .then(res => res.json())
-    .then(renderBooks);
+    .then(renderbundles);
 
   form.reset();
 }
 
-form.addEventListener("submit", loadBooks)
+form.addEventListener("submit", loadbundles)
